@@ -8,14 +8,30 @@ const createUser = async (req, res, next) => {
     const result = await UserServices.create(newUser);
     res.status(201).json(result);
   } catch (err) {
-    next({
-      status: 400,
-      errorContent: err,
+    res.status(400).json({
+      status: '!-> FAIL <-!',
       messages: '<-!!!Check Information - Something Went Wrong!!!->',
     })
   }
+  next();
 };
+
+//Get All Users
+const getAllUsers = async (req, res, next) => {
+  try {
+    const users = await UserServices.getAll();
+    res.json(users);
+
+  } catch (err) {
+    res.status(400).json({
+      status: '!-> FAIL <-!',
+      messages: '<-!!!Check Information - Something Went Wrong!!!->',
+    })
+  }
+  next();
+}
 
 module.exports = {
   createUser,
+  getAllUsers
 };

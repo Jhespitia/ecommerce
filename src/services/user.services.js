@@ -1,5 +1,3 @@
-
-
 const { Users } = require("../models");
 
 class UserServices {
@@ -9,6 +7,15 @@ class UserServices {
       return result;
     } catch (error) {
       throw error;
+    }
+  }
+
+  static async getAll() {
+    try {
+      const result = await Users.findAll();
+      return result;
+    } catch (err) {
+      throw err;
     }
   }
 }
