@@ -12,11 +12,13 @@ const ProductInCart = db.define('productInCart', {
   cartId: {
     type: DataTypes.INTEGER,
     allowNull: false,
+    field: 'cart_id'
   },
 
   productId: {
     type: DataTypes.INTEGER,
     allowNull: false,
+    field: 'product_id'
   },
   quantity: {
     type: DataTypes.INTEGER,
@@ -24,12 +26,12 @@ const ProductInCart = db.define('productInCart', {
   },
 
   price: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.STRING,
     allowNull: false,
   },
 
   status: {
-    type: DataTypes.DATE,
+    type: DataTypes.STRING,
     allowNull: false,
   }
 });

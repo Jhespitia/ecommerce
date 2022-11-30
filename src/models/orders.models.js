@@ -18,6 +18,7 @@ const Orders = db.define('orders', {
   userId: {
     type: DataTypes.INTEGER,
     allowNull: false,
+    field: 'user_id',
   },
 
   status: {

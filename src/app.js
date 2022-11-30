@@ -4,6 +4,7 @@ const cors = require('cors');
 const db = require('./utils/database');
 const handleError = require('./middlewares/error.middleware');
 const initModels = require('./models/init.models');
+const { userRoutes } = require('./routes');
 
 const app = express();
 
@@ -19,7 +20,7 @@ db.authenticate()
   .catch((err) => console.log(err));
 
 //Synced DataBase
-db.sync({ force: true })
+db.sync({ force: false })
   .then(() => console.log('***!DataBase Synced!***'))
   .catch((err) => console.log(err));
 
@@ -28,6 +29,16 @@ app.get('/', (req, res) => {
   console.log('! >- WELLCOME TO THE SERVER -> !')
 });
 
+app.use('/api/v1', userRoutes);
+
 app.use(handleError);
+
+// Error NoN-Existing EndPonits
+app.all('*', (req, res) => {
+  res.status(404).json({
+    status: '!-> FAIL <-!',
+    message: `  The URL ${req.url} for ~'${req.method}'~, does not exist in our server - Try again...!`,
+  })
+});
 
 module.exports = app;

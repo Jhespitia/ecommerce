@@ -12,11 +12,13 @@ const ProductInOrder = db.define('productInOrder', {
   orderId: {
     type: DataTypes.INTEGER,
     allowNull: false,
+    field: 'order_id',
   },
 
   productId: {
     type: DataTypes.INTEGER,
     allowNull: false,
+    field: 'product_id',
   },
 
   quantity: {
@@ -30,7 +32,7 @@ const ProductInOrder = db.define('productInOrder', {
   },
 
   status: {
-    type: DataTypes.DATE,
+    type: DataTypes.STRING,
     allowNull: false,
   }
 });

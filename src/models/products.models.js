@@ -27,11 +27,13 @@ const Products = db.define('products', {
   status: {
     type: DataTypes.STRING,
     allowNull: false,
+    defaultValue: 'available',
   },
 
   userId: {
     type: DataTypes.INTEGER,
     allowNull: false,
+    field: 'user_id',
   },
 });
 
