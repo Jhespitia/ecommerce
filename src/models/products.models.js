@@ -12,6 +12,7 @@ const Products = db.define('products', {
   name: {
     type: DataTypes.STRING,
     allowNull: false,
+    unique: true,
   },
 
   price: {
@@ -22,6 +23,7 @@ const Products = db.define('products', {
   availableQty: {
     type: DataTypes.STRING,
     allowNull: false,
+    //field: 'available_Qty',
   },
 
   status: {
@@ -32,8 +34,18 @@ const Products = db.define('products', {
 
   userId: {
     type: DataTypes.INTEGER,
-    allowNull: false,
+    allowNull: true,
     field: 'user_id',
+  },
+  imageUrl: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    field: 'image_url',
+  },
+  soldBy: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    field: 'sold_by',
   },
 });
 

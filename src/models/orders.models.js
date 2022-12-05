@@ -11,7 +11,7 @@ const Orders = db.define('orders', {
   },
 
   totalPrice: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.STRING,
     allowNull: false,
   },
 

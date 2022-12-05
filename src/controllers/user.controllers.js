@@ -5,12 +5,18 @@ const UserServices = require('../services/user.services');
 const createUser = async (req, res, next) => {
   try {
     const newUser = req.body;
-    const result = await UserServices.create(newUser);
-    res.status(201).json(result);
-  } catch (err) {
+    const userCreated = await UserServices.create(newUser);
+    res.status(201).json({
+      status: '!<-SUCESS->!',
+      message: '~!NEW USER CREATED!~',
+      userCreated,
+    });
+
+  } catch (error) {
     res.status(400).json({
-      status: '!-> FAIL <-!',
-      messages: '<-!!!Check Information - Something Went Wrong!!!->',
+      status: '!->FAIL<-! ',
+      errorContent: error.message,
+      messages: '~USER NOT CREATED~',
     })
   }
   next();
@@ -20,16 +26,20 @@ const createUser = async (req, res, next) => {
 const getAllUsers = async (req, res, next) => {
   try {
     const users = await UserServices.getAll();
-    res.json(users);
+    res.json({
+      status: '!<-SUCESS->!',
+      message: '~!LIST ALL USERS!~',
+      users,
+    });
 
-  } catch (err) {
+  } catch (error) {
     res.status(400).json({
-      status: '!-> FAIL <-!',
-      messages: '<-!!!Check Information - Something Went Wrong!!!->',
+      status: '!->FAIL<-!',
+      messages: '!Cannot  get ALL USERS information!',
     })
   }
   next();
-}
+};
 
 module.exports = {
   createUser,

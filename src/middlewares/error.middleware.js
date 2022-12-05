@@ -1,8 +1,8 @@
-const handleError = (err, req, res, next) => {
-  const { status, errorContent, message } = err;
+const handleError = (error, req, res, next) => {
+  const { status, errorContent, message } = error;
   res.status(status).json({
     message,
-    err: errorContent.message,
+    error: errorContent.message,
   });
 };
 

@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
 class AuthServices {
+
   static async authenticate(credentials) {
     try {
       const { email, password } = credentials;
@@ -24,12 +25,12 @@ class AuthServices {
   static getToken(data) {
     try {
       const token = jwt.sign(data, process.env.SECRET, {
-        expiresIn: '10m',
+        //expiresIn: '10m',
         algorithm: 'HS512',
       });
       return token;
-    } catch (err) {
-      throw err;
+    } catch (error) {
+      throw error;
     }
   }
 }

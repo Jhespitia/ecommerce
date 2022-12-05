@@ -10,10 +10,10 @@ const authenticate = (req, res, next) => {
     try {
       const decoded = jwt.verify(token, process.env.SECRET, "HS512");
       next();
-    } catch (err) {
+    } catch (error) {
       next({
         status: 400,
-        errorContent: err,
+        errorContent: error,
         message: "Invalid Token",
       });
     }

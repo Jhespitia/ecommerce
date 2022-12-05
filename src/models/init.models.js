@@ -15,6 +15,9 @@ const initModels = () => {
   Users.hasMany(Products, { foreignKey: 'user_id' });
   Products.belongsTo(Users, { foreignKey: 'user_id' });
 
+  Users.hasMany(ProductInCart, { foreignKey: 'user_id' });
+  ProductInCart.belongsTo(Users, { foreignKey: 'user_id' });
+
   //-> Un usuario solo puede tener un carrito, y un carrito le pertenece a un usuario
   Users.hasOne(Cart, { foreignKey: 'user_id' });
   Cart.belongsTo(Users, { foreignKey: 'user_id' });
@@ -24,8 +27,13 @@ const initModels = () => {
   Orders.belongsTo(Users, { foreignKey: 'user_id' });
 
   //-> Un ProductInCart puede tener un producto y pertenece a un carrito
-  Products.hasOne(ProductInCart, { foreignKey: 'product_id' });
-  ProductInCart.belongsTo(Cart, { foreignKey: 'cart_id' });
+  Products.hasMany(ProductInCart, { foreignKey: 'product_id' });
+  ProductInCart.belongsTo(Products, { foreignKey: 'product_id' });
+
+
+  Products.hasMany(Cart, { foreignKey: 'user_id' });
+  Cart.belongsTo(Products, { foreignKey: 'user_id' });
+
 
   //-> Un ProductInOrder tiene un producto y pertenece a una orden
   Products.hasOne(ProductInOrder, { foreignKey: 'product_id' });
@@ -36,8 +44,8 @@ const initModels = () => {
   ProductInOrder.belongsTo(Orders, { foreignKey: 'order_id' });
 
   //-> Un carrito tiene muchos ProductInCart
-  Cart.hasMany(ProductInCart, { foreignKey: 'cart_id' });
-  ProductInCart.belongsTo(Cart, { foreignKey: 'cart_id' });
+  Cart.hasMany(ProductInCart, { foreignKey: 'user_id' });
+  ProductInCart.belongsTo(Cart, { foreignKey: 'user_id' });
 
 };
 

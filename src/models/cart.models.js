@@ -16,7 +16,7 @@ const Cart = db.define('cart', {
   },
 
   totalPrice: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.STRING,
     allowNull: false,
   }
 });

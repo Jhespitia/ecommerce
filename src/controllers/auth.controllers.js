@@ -11,15 +11,23 @@ const userLogin = async (req, res, next) => {
       const user = { id, username, email };
       const token = AuthServices.getToken(user);
       user.token = token;
-      res.json({ ...user });
+      res.json({
+        status: '!<-SUCESS->!',
+        message: '<~!USER LOG-IN SUCCESSFULL!~>',
+        ...user
+      });
     } else {
-      res.status(400).json({ message: '!<-INVALID INFORMATION ->!' });
+      res.status(400).json({
+        status: '!->FAIL<-!',
+        //errorContent: error,
+        message: '<-!! Email or Password Incorrect !!->'
+      });
     }
-  } catch (err) {
+  } catch (error) {
     next({
       status: 400,
-      errorContent: err,
-      messages: '<-!!!Your Email or Password is Incorrect - Try again!!!->',
+      errorContent: error,
+      messages: '<-!Email or Password is Incorrect - Try again!->',
     })
   }
 };

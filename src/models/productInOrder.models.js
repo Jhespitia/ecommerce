@@ -27,7 +27,7 @@ const ProductInOrder = db.define('productInOrder', {
   },
 
   price: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.STRING,
     allowNull: false,
   },
 

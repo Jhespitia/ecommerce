@@ -1,6 +1,8 @@
 const { Users } = require("../models");
 
 class UserServices {
+
+  //Create User
   static async create(user) {
     try {
       const result = await Users.create(user);
@@ -10,12 +12,18 @@ class UserServices {
     }
   }
 
+  //Get All Users
   static async getAll() {
     try {
-      const result = await Users.findAll();
+      const result = await Users.findAll({
+        attributes: {
+          exclude: ['createdAt', 'updatedAt']
+        }
+
+      });
       return result;
-    } catch (err) {
-      throw err;
+    } catch (error) {
+      throw error;
     }
   }
 }
